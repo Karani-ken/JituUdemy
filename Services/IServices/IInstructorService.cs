@@ -1,4 +1,5 @@
 ﻿using JituUdemy.Entities;
+using JituUdemy.Responses;
 
 namespace JituUdemy.Services.IServices
 {
@@ -11,10 +12,15 @@ namespace JituUdemy.Services.IServices
         Task<string> UpdateInstructorAsync(Instructor instructor);
         //delete
         Task<string> DeleteInstructorAsync(Instructor instructor);
-        //get all users
-        Task<IEnumerable<Instructor>> GetAllUsersAsync();
+       
 
         //get one user
         Task<Instructor> GetInstructorByIdAsync(Guid id);
+
+        //Get All User
+        Task<IEnumerable<InstructorCoursesDTO>> GetAllInstructorsAsync();
+
+        //Get One User
+        Task< InstructorCoursesDTO> GetUserandCoursesIdAsync(Guid id);
     }
 }

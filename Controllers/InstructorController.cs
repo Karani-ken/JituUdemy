@@ -28,13 +28,13 @@ namespace JituUdemy.Controllers
             return CreatedAtAction(nameof(AddInstructor),new SuccessMessage(200,res));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Instructor>>> GetAllInstructors()
+        public async Task<ActionResult<IEnumerable<InstructorCoursesDTO>>> GetAllInstructors()
         {
-            var instructors = await _instructorService.GetAllUsersAsync();
+            var instructors = await _instructorService.GetAllInstructorsAsync();
             return Ok(instructors);
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserResponse>> GetByIdInstructor(Guid id)
+        public async Task<ActionResult<InstructorCoursesDTO>> GetByIdInstructor(Guid id)
         {
             var response = await _instructorService.GetInstructorByIdAsync(id);
             if (response == null)
@@ -53,8 +53,8 @@ namespace JituUdemy.Controllers
             {
                 return NotFound(new SuccessMessage(404, "User not Found"));
             }
-            var user = _mapper.Map(UpdatedInstructor, response);
-            var res = await _instructorService.UpdateInstructorAsync(user);
+            var updated = _mapper.Map(UpdatedInstructor, response);
+            var res = await _instructorService.UpdateInstructorAsync(updated);
 
             return Ok(new SuccessMessage(201, res));
 

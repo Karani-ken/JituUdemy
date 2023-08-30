@@ -93,7 +93,7 @@ namespace JituUdemy.Controllers
      }
             catch (Exception ex)
             {
-                return BadRequest(new SuccessMessage(404, ex.Message);
+                return BadRequest(new SuccessMessage(404, ex.Message));
             }
         }
 
