@@ -24,10 +24,17 @@ namespace JituUdemy.Controllers
         [HttpPost]
         public async Task<ActionResult<SuccessMessage>> AddCourse(AddCourse newCourse)
         {
-            var course =  _mapper.Map<Course>(newCourse);
-
-           var res = await _courseService.AddCourseAsync(course);
-            return Ok(new SuccessMessage(200, res));
+            try
+            {
+                var course = _mapper.Map<Course>(newCourse);
+                var res = await _courseService.AddCourseAsync(course);
+                return Ok(new SuccessMessage(200, res));
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new SuccessMessage(404, ex.Message));
+            }
+           
         }
         [HttpGet]
 
@@ -62,7 +69,7 @@ namespace JituUdemy.Controllers
             return Ok(new SuccessMessage(200, res));
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<SuccessMessage>> UpdateCourse(Guid id, AddCourse UpdatedCourse)
+        public async Task<ActionResult<SuccessMessage>> UpdateCourse(Guid id, UpdateCourse UpdatedCourse)
         {
             var response = await _courseService.GetCourseByIdAsync(id);
             if (response == null)
@@ -74,5 +81,6 @@ namespace JituUdemy.Controllers
             var res = await _courseService.UpdateCourseAsync(CourseUpdate);
             return Ok(new SuccessMessage(200, res));
         }
+       
     }
 }

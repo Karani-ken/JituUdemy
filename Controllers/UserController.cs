@@ -80,6 +80,22 @@ namespace JituUdemy.Controllers
 
             return Ok(new SuccessMessage(201, res));
         }
+        //buy a course
+        [HttpPut("BuyCourse")]
+        public async Task<ActionResult<SuccessMessage>> BuyCourse(Guid id, BuyCourse buy)
+        {
+            try
+            {
+                var res = await _userService.BuyCourse(buy);
+
+                return Ok(new SuccessMessage(200, res));
+       
+     }
+            catch (Exception ex)
+            {
+                return BadRequest(new SuccessMessage(404, ex.Message);
+            }
+        }
 
     }
 }

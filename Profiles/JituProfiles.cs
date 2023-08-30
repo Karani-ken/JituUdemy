@@ -15,6 +15,7 @@ namespace JituUdemy.Profiles
             
             //Courses
             CreateMap<AddCourse, Course>().ReverseMap();
+            CreateMap<UpdateCourse, Course>().ReverseMap();
             CreateMap<CourseResponse, Course>().ReverseMap();
 
             //Instructors

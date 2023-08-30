@@ -16,7 +16,7 @@ namespace JituUdemy.Services
         {
             _context.Add(course);
             await _context.SaveChangesAsync();
-            return "User Added Successfully";
+            return "Course Added Successfully";
         }
 
         public async Task<string> DeleteCourseAsync(Course course)
